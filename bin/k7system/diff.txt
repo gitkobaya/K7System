@@ -1,0 +1,113 @@
+diff loaders/Geometry.java loadersCopy/Geometry.java
+128d127
+<         float[] tangents=new float[vtxList.size()*3];
+140c139
+<             if (texFlag){ // テクスチャ情報がある場合，テクスチャ座標と接線ベクトル情報を登録しておく
+---
+>             if (texFlag){
+144,147d142
+<                 float[] tan=vtx.getTangent();
+<                 tangents[i*3]=tan[0];
+<                 tangents[i*3+1]=tan[1];
+<                 tangents[i*3+2]=tan[2];
+157d151
+<         vao.setTangents(tangents);
+diff loaders/MQOLoader.java loadersCopy/MQOLoader.java
+246d245
+<         float[][] tangents=null;  // 接線データ
+397,399d395
+< 
+<                     default:
+<                         break;
+443a440
+> 
+476c473
+<         // 頂点要素の操作
+---
+>         // 法線生成
+479d475
+<         tangents=new float[baredVertices.size()][3];
+488c484
+<                     vtc[j]=baredVertices.get(pol.index[j]).clone();
+---
+>                 vtc[j]=baredVertices.get(pol.index[j]).clone();
+494d489
+<             // 法線生成
+497,498d491
+<             // 接線生成
+<             pol.tangent=new float[]{-pol.uv[0][0]/vtc[0][0], -pol.uv[1][0]/vtc[1][0], -pol.uv[2][0]/vtc[2][0]};
+500a494
+> 
+504a499
+> 
+508a504
+> 
+512a509
+> 
+517,519d513
+<                 vertex[0].setTangent(pol.tangent); // 全頂点が同じ接線
+<                 vertex[1].setTangent(pol.tangent); // 全頂点が同じ接線
+<                 vertex[2].setTangent(pol.tangent); // 全頂点が同じ接線
+526,529d519
+< 
+<                     tangents[pol.index[j]][0]+=pol.tangent[0];
+<                     tangents[pol.index[j]][1]+=pol.tangent[1];
+<                     tangents[pol.index[j]][2]+=pol.tangent[2];
+543,545d532
+<                 vertices.get(i*3).setTangent(VectorManager.normalize(tangents[pol.index[0]]));
+<                 vertices.get(i*3+1).setTangent(VectorManager.normalize(tangents[pol.index[1]]));
+<                 vertices.get(i*3+2).setTangent(VectorManager.normalize(tangents[pol.index[2]]));
+diff loaders/ModelLoader.java loadersCopy/ModelLoader.java
+12,17d11
+<     public Model3D loadModel(String filename){
+<         return this.loadModel(new File(filename));
+<     }
+< 
+< 
+<     /** 3Dモデルをファイルから読み込むメソッドです */
+diff loaders/Polygon3D.java loadersCopy/Polygon3D.java
+6,7c6
+<     float[] normal=new float[3]; // 法線ベクトル
+<     float[] tangent=new float[3]; // 接線ベクトル
+---
+>     float[] normal=new float[3];
+10c9
+< 
+---
+>     
+16d14
+<         clone.tangent=tangent.clone();
+24c22
+< 
+---
+>         
+diff loaders/Vertex.java loadersCopy/Vertex.java
+8c8
+<     private float[] normal=new float[]{0,0,0};  // 法線ベクトルです。
+---
+>     private float[] normal=new float[]{0,0,0};  // 法線座標です。
+10d9
+<     private float[] tangent=new float[]{0,0,0};  // 接線ベクトルです。
+61,70d59
+<     /** 接線ベクトルの取得です */
+<     public float[] getTangent() {
+<         return this.tangent;
+<     }
+< 
+<     /** 接線ベクトルの設定です */
+<     public void setTangent(float[] tangent) {
+<         this.tangent = tangent.clone();
+<     }
+< 
+96,102d84
+<             float diffTan=0;
+<             if (this.tangent!=null && target.tangent!=null){
+<                 diffTan=
+<                         Math.abs(this.tangent[0]-target.tangent[0])+
+<                         Math.abs(this.tangent[1]-target.tangent[1])+
+<                         Math.abs(this.tangent[2]-target.tangent[2]);
+<             }
+104c86
+<             float diff=diffPos+diffNorm+diffTexC+diffTan;
+---
+>             float diff=diffPos+diffNorm+diffTexC;

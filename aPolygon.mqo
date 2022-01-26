@@ -1,0 +1,42 @@
+Metasequoia Document
+Format Text Ver 1.0
+
+Scene {
+	pos -162.5931 -71.2244 1500.0000
+	lookat 0.0000 0.0000 0.0000
+	head -6.3736
+	pich -0.2392
+	ortho 0
+	zoom2 4.9999
+	amb 0.250 0.250 0.250
+}
+Material 1 {
+	"mat1" shader(3) col(1.000 1.000 1.000 1.000) dif(1.000) amb(0.250) emi(0.250) spc(0.000) power(5.00) tex("earth.jpg")
+}
+
+Object "obj1" {
+	depth 0
+	folding 0
+	scale 1.000000 1.000000 1.000000
+	rotation 0.000000 0.000000 0.000000
+	translation 0.000000 0.000000 0.000000
+	visible 15
+	locking 0
+	shading 0
+	facet 59.5
+	color 0.898 0.498 0.698
+	color_type 0
+	mirror 0
+	mirror_axis 0
+	vertex 4 {
+		0.0000 100.0000 0.0000
+		0.0000 0.0000 0.0000
+		100.0000 0.0000 0.0000
+		100.0000 100.0000 0.0000
+	}
+	face 2 {
+		3 V(2 1 0) M(0) UV(1.0000 1.0000 0.00000 1.0000 0.00000 0.00000)
+		3 V(0 3 2) M(0) UV(0.00000 0.00000 1.00000 0.0000 1.0000 1.0000)
+	}
+}
+Eof
